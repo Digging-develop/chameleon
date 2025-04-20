@@ -2,10 +2,15 @@ import time
 import requests
 import boto3
 import logging
+from dotenv import load_dotenv
+import os
+
+# .env 파일 로드
+load_dotenv("secure.env")
 
 # AWS 설정
-HOSTED_ZONE_ID = "YOUR_HOSTED_ZONE_ID"  # Route 53 호스팅 영역 ID
-DOMAIN_NAME = "yourdomain.com"  # 갱신할 도메인 이름
+HOSTED_ZONE_ID = os.getenv("HOSTED_ZONE_ID")  # Route 53 호스팅 영역 ID
+DOMAIN_NAME = os.getenv("DOMAIN_NAME")        # 갱신할 도메인 이름
 
 # 로깅 설정
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")

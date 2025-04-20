@@ -7,7 +7,20 @@ services:
       dockerfile: Dockerfile
     container_name: chameleon_core_service
     env_file:
-      - ./core/secure.env  # secure.env 파일에서 환경 변수를 읽어옵니다.
+      - ./core/secure.env
     volumes:
       - ~/.aws:/root/.aws:ro
     restart: always
+    command: python main.py
+
+  scheduler:
+    build:
+      context: ./core
+      dockerfile: Dockerfile
+    container_name: chameleon_scheduler_service
+    env_file:
+      - ./core/secure.env
+    volumes:
+      - ~/.aws:/root/.aws:ro
+    restart: always
+    command: python scheduler.py
